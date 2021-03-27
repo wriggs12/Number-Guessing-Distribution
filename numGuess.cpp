@@ -6,6 +6,7 @@ void playGame();
 void computerPlays();
 void insertionSort(int arr[], int n);
 void displayData(int arr[], int n);
+void displayStats(int arr[], int n);
 
 int main() {
 	computerPlays();
@@ -64,7 +65,7 @@ void computerPlays() {
 
 	insertionSort(nums, size);
 
-	displayData(nums, size);
+	displayStats(nums, size);
 }
 
 void insertionSort(int arr[], int n) {
@@ -97,4 +98,18 @@ void displayData(int arr[], int n) {
 	}
 
 	cout << display << endl;
+}
+
+void displayStats(int arr[], int n) {
+	int mean, median;
+	int sum = 0;
+
+	for (int i = 0; i < n; i++) {
+		sum = sum + arr[i];
+	}
+
+	mean = sum / n;
+	median = arr[n/2];
+
+	cout << "Mean: " << mean << endl << "Median: " << median << endl;
 }
