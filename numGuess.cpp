@@ -7,6 +7,7 @@ void computerPlays();
 void insertionSort(int arr[], int n);
 void displayData(int arr[], int n);
 void displayStats(int arr[], int n);
+int getStandardDeviation(float arr[], int n, int mean);
 
 int main() {
 	computerPlays();
@@ -101,15 +102,37 @@ void displayData(int arr[], int n) {
 }
 
 void displayStats(int arr[], int n) {
-	int mean, median;
+	float mean, median, sd;
 	int sum = 0;
+	float data[n];
+
+	for (int i = 0; i < n; i++) {
+		data[i] = arr[i];
+	}
+
+	for (int i = 0; i < n; i++) {
+		sum = sum + data[i];
+	}
+
+	mean = sum / n;
+	median = arr[n/2];
+	sd = getStandardDeviation(data, n, mean);
+
+	cout << "Mean: " << mean << endl << "Median: " << median << endl;
+}
+
+int getStandardDeviation(float arr[], int n, float mean) {
+	for (int i = 0; i < n; i++) {
+		arr[i] = (arr[i] - mean) * (arr[i] - mean);
+	}
+
+	float sum = 0;
 
 	for (int i = 0; i < n; i++) {
 		sum = sum + arr[i];
 	}
 
-	mean = sum / n;
-	median = arr[n/2];
+	float sd = sum / n;
 
-	cout << "Mean: " << mean << endl << "Median: " << median << endl;
+	return sd;
 }
