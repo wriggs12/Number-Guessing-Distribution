@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <math.h>
 using namespace std;
 
 void playGame();
@@ -7,7 +8,7 @@ void computerPlays();
 void insertionSort(int arr[], int n);
 void displayData(int arr[], int n);
 void displayStats(int arr[], int n);
-int getStandardDeviation(float arr[], int n, int mean);
+float getStandardDeviation(float arr[], int n, float mean);
 
 int main() {
 	computerPlays();
@@ -118,10 +119,11 @@ void displayStats(int arr[], int n) {
 	median = arr[n/2];
 	sd = getStandardDeviation(data, n, mean);
 
-	cout << "Mean: " << mean << endl << "Median: " << median << endl;
+	cout << "Mean: " << mean << endl << "Median: " << median << endl << "Standard Deviation: " << sd << endl;
 }
 
-int getStandardDeviation(float arr[], int n, float mean) {
+float getStandardDeviation(float arr[], int n, float mean) {
+	
 	for (int i = 0; i < n; i++) {
 		arr[i] = (arr[i] - mean) * (arr[i] - mean);
 	}
@@ -132,7 +134,7 @@ int getStandardDeviation(float arr[], int n, float mean) {
 		sum = sum + arr[i];
 	}
 
-	float sd = sum / n;
+	float sd = sqrt(sum / (n - 1));
 
 	return sd;
 }
